@@ -35,11 +35,32 @@ nav a {
     font-size: 1.1em;
     padding: 10px 20px;
     display: block;
+    position: relative;  /* Stellt sicher, dass der Unterstrich relativ zum Link positioniert wird */
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+    border-radius: 5px;
 }
 
 nav a:hover {
     background-color: #d32f2f;
-    border-radius: 5px;
+    transform: scale(1.1); /* Slightly enlarge the button on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+}
+
+/* Hover Animation Effects */
+nav a::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 3px;
+    background-color: #fff;
+    left: 0;              /* Unterstrich beginnt direkt am linken Rand des Links */
+    bottom: 0;            /* Der Unterstrich bleibt am unteren Rand des Links */
+    transition: width 0.3s ease; /* Animation der Breite */
+}
+
+/* Wenn der Benutzer über den Link hovert, erweitern wir den Unterstrich */
+nav a:hover::before {
+    width: 100%;           /* Der Unterstrich wächst auf 100% der Breite des Links */
 }
 
 /* Container für den Inhalt */
@@ -84,6 +105,29 @@ nav a:hover {
     height: auto;           /* Die Höhe des Bildes wird proportional angepasst */
     border-radius: 8px;     /* Bilder erhalten abgerundete Ecken, passend zur Karte */
     margin-bottom: 15px;    /* Etwas Abstand nach unten */
+    cursor: pointer;       /* Zeigt an, dass das Bild klickbar ist */
+}
+
+/* Modale Bildanzeige */
+.modal {
+    display: none;  /* Zuerst versteckt */
+    position: fixed;
+    z-index: 1; /* Überlagert andere Inhalte */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Dunkler Hintergrund */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.modal img {
+    max-width: 90%;
+    max-height: 80%;
+    margin: 20px;
+    border-radius: 10px;
 }
 
 /* Footer */

@@ -1,92 +1,147 @@
-* {
+/* Allgemeine Stile für den gesamten Body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-}
-
-body {
-    background-color: #f4f4f4;
     color: #333;
 }
 
+/* Header */
 header {
-    background-color: #c00;
+    background-color: #d32f2f;
     color: white;
-    padding: 20px 0;
+    padding: 20px;
     text-align: center;
 }
 
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+/* Navigation */
 nav {
-    background-color: #111;
-    text-align: center;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px 0;
 }
 
 nav a {
     color: white;
-    padding: 15px;
     text-decoration: none;
-    text-transform: uppercase;
-    display: inline-block;
+    font-size: 1.1em;
+    padding: 10px 20px;
+    display: block;
 }
 
 nav a:hover {
-    background-color: #444;
+    background-color: #d32f2f;
+    border-radius: 5px;
 }
 
+/* Container für den Inhalt */
 .container {
-    width: 80%;
-    margin: 20px auto;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
 }
 
+/* Cards (z.B. für Einsätze, Fuhrpark etc.) */
+.card {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+.card a {
+    color: #d32f2f;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.card a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
 footer {
-    background-color: #111;
+    background-color: #333;
     color: white;
-    padding: 10px;
+    padding: 20px;
     text-align: center;
     position: fixed;
-    width: 100%;
     bottom: 0;
+    width: 100%;
 }
 
-h1, h2 {
+footer p {
+    margin: 0;
+}
+
+/* Impressum Section */
+.impressum {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.impressum h1 {
+    color: #d32f2f;
     font-size: 2em;
     margin-bottom: 20px;
 }
 
-section {
-    margin-bottom: 30px;
-}
-
-.card {
-    background-color: white;
-    padding: 20px;
+.impressum p {
+    font-size: 1.1em;
+    line-height: 1.6;
     margin-bottom: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.card img {
-    width: 100%;
-    height: auto;
-    margin-bottom: 10px;
+.impressum a {
+    color: #d32f2f;
+    text-decoration: none;
 }
 
-.card h3 {
-    font-size: 1.5em;
+.impressum a:hover {
+    text-decoration: underline;
 }
 
-.card p {
-    font-size: 1em;
-    color: #666;
-}
-
+/* Responsive Design */
 @media (max-width: 768px) {
-    .container {
-        width: 95%;
+    nav {
+        flex-direction: column;
+        gap: 10px;
     }
 
-    nav a {
-        display: block;
-        margin: 5px 0;
+    .container {
+        margin: 20px;
+        padding: 15px;
+    }
+
+    .impressum {
+        margin: 20px;
+        padding: 15px;
+    }
+
+    .card {
+        padding: 15px;
     }
 }

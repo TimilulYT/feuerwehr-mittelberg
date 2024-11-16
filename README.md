@@ -30,7 +30,7 @@ Wenn Sie zur Weiterentwicklung der Website der Feuerwehr Mittelberg beitragen m�
 
 ## Kontakt
 
-Für Fragen oder Anmerkungen können Sie uns unter [kontakt@feuerwehr-mittelberg.de](mailto:contact.timilul@gmail.com) erreichen.
+Für Fragen oder Anmerkungen können Sie uns unter [contact.timilul@gmail.com](mailto:contact.timilul@gmail.com) erreichen.
 
 ---
 

@@ -1,0 +1,95 @@
+/* Allgemeine Reset-Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header-Styling */
+header {
+    background-color: #c00;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Navigation-Styling */
+nav {
+    background-color: #111;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    padding: 15px;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+nav a:hover {
+    background-color: #444;
+}
+
+/* Container für den Hauptinhalt */
+.container {
+    width: 80%;
+    margin: 20px auto;
+}
+
+/* Footer-Styling */
+footer {
+    background-color: #111;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Titel Styling für Impressum */
+h1, h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #c00;
+}
+
+/* Abschnitt im Impressum */
+section {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+section p {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+/* Text Stil für Kontaktinformationen */
+section p strong {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Responsive Design für kleinere Bildschirme */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    nav a {
+        display: block;
+        margin: 5px 0;
+    }
+}

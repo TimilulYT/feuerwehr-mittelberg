@@ -78,6 +78,14 @@ nav a:hover {
     text-decoration: underline;
 }
 
+/* Spezifische Styles für Bilder auf der Fuhrpark-Seite */
+.card img {
+    max-width: 100%;        /* Bild passt sich der Breite der Karte an */
+    height: auto;           /* Die Höhe des Bildes wird proportional angepasst */
+    border-radius: 8px;     /* Bilder erhalten abgerundete Ecken, passend zur Karte */
+    margin-bottom: 15px;    /* Etwas Abstand nach unten */
+}
+
 /* Footer */
 footer {
     background-color: #333;

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termine | Feuerwehr Mittelberg</title>
+    <link rel="stylesheet" href="css/style-termine.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Feuerwehr Mittelberg</h1>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html">Startseite</a>
+        <a href="einsaetze.html">Einsätze</a>
+        <a href="fuhrpark.html">Fuhrpark</a>
+        <a href="downloads.html">Downloads</a>
+        <a href="termine.html" class="active">Termine</a>
+        <a href="impressum.html">Impressum</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Termine Section -->
+        <section class="termine-section">
+            <h2>Termine</h2>
+            <p>Hier finden Sie alle anstehenden Termine und Veranstaltungen der Feuerwehr Mittelberg.</p>
+
+            <!-- Termine Tabelle -->
+            <table class="termine-tabelle">
+                <thead>
+                    <tr>
+                        <th>Datum</th>
+                        <th>Uhrzeit</th>
+                        <th>Veranstaltung</th>
+                        <th>Ort</th>
+                    </tr>
+                </thead>
+                <tbody id="terminTabelleBody">
+                    <!-- Termine werden hier dynamisch eingefügt -->
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Feuerwehr Mittelberg. Alle Rechte vorbehalten.</p>
+    </footer>
+
+    <script>
+        // Wenn die Seite geladen wird, zeige die gespeicherten Termine an
+        window.onload = function() {
+            // Lade die Termine aus dem localStorage
+            let termine = JSON.parse(localStorage.getItem('termine')) || [];
+
+            // Hole das tbody-Element, in dem die Termine angezeigt werden sollen
+            const terminTabelleBody = document.getElementById('terminTabelleBody');
+
+            // Lösche den Inhalt der Tabelle (für den Fall, dass bereits Termine vorhanden sind)
+            terminTabelleBody.innerHTML = '';
+
+            // Iteriere durch alle Termine und füge sie in die Tabelle ein
+            termine.forEach(function(termin) {
+                const tr = document.createElement('tr');
+
+                // Erstelle die Zellen für Datum, Uhrzeit, Veranstaltung und Ort
+                const tdDatum = document.createElement('td');
+                tdDatum.textContent = termin.datum;
+
+                const tdUhrzeit = document.createElement('td');
+                tdUhrzeit.textContent = termin.uhrzeit;
+
+                const tdVeranstaltung = document.createElement('td');
+                tdVeranstaltung.textContent = termin.veranstaltung;
+
+                const tdOrt = document.createElement('td');
+                tdOrt.textContent = termin.ort;
+
+                // Füge die Zellen zur Zeile hinzu
+                tr.appendChild(tdDatum);
+                tr.appendChild(tdUhrzeit);
+                tr.appendChild(tdVeranstaltung);
+                tr.appendChild(tdOrt);
+
+                // Füge die Zeile zur Tabelle hinzu
+                terminTabelleBody.appendChild(tr);
+            });
+        };
+    </script>
+
+</body>
+</html>

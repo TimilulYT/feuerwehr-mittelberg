@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | Feuerwehr Neusternberg</title>
+    <link rel="stylesheet" href="css/style-admin.css">
+</head>
+<body>
+    <div id="sidebar">
+        <div class="sidebar-header">
+            <h3>Admin Panel</h3>
+        </div>
+        <ul class="sidebar-nav">
+            <li><a href="index.html" class="active">Dashboard</a></li>
+            <li><a href="user-create.html">Benutzer hinzufügen</a></li>
+            <li><a href="#">Termin hinzufügen</a></li>
+            <li><a href="#" id="show-termine">Termine anzeigen</a></li>
+            <li><a href="javascript:void(0);" id="logout-btn">Logout</a></li>
+        </ul>
+    </div>
+
+    <div id="main-content">
+        <div id="login-section" style="display: block;">
+            <div class="card">
+                <h2>Login</h2>
+                <form id="login-form">
+                    <input type="text" id="username" placeholder="Benutzername" required>
+                    <input type="password" id="password" placeholder="Passwort" required>
+                    <button type="submit">Einloggen</button>
+                </form>
+                <p id="login-error" style="color: red; display: none;">Falsche Anmeldedaten!</p>
+            </div>
+        </div>
+
+        <div id="admin-panel" style="display: none;">
+            <div class="card" id="termin-hinzufuegen">
+                <h2>Terminverwaltung</h2>
+                <form id="add-termin-form">
+                    <label for="datum">Datum:</label>
+                    <input type="date" id="datum" required>
+
+                    <label for="uhrzeit">Uhrzeit:</label>
+                    <input type="time" id="uhrzeit" required>
+
+                    <label for="veranstaltung">Veranstaltung:</label>
+                    <input type="text" id="veranstaltung" placeholder="Veranstaltung" required>
+
+                    <label for="ort">Ort:</label>
+                    <input type="text" id="ort" placeholder="Ort" required>
+
+                    <button type="submit">Termin hinzufügen</button>
+                </form>
+                <p id="termin-added-msg" style="color: green; display: none;">Termin wurde erfolgreich hinzugefügt!</p>
+            </div>
+
+            <div class="card" id="termin-anzeigen" style="display: none;">
+                <h2>Termine anzeigen</h2>
+                <table id="termine-tabelle">
+                    <thead>
+                        <tr>
+                            <th>Datum</th>
+                            <th>Uhrzeit</th>
+                            <th>Veranstaltung</th>
+                            <th>Ort</th>
+                            <th>Aktion</th>
+                        </tr>
+                    </thead>
+                    <tbody id="termine-list">
+                        <!-- Termine werden hier dynamisch eingefügt -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Funktion zum Laden und Anzeigen der Termine
+        function loadTermine() {
+            const termine = JSON.parse(localStorage.getItem('termine')) || [];
+            const termineList = document.getElementById('termine-list');
+            termineList.innerHTML = ''; // Tabelle leeren
+
+            termine.forEach(function(termin, index) {
+                const row = document.createElement('tr');
+
+                const datumCell = document.createElement('td');
+                datumCell.textContent = termin.datum;
+                row.appendChild(datumCell);
+
+                const uhrzeitCell = document.createElement('td');
+                uhrzeitCell.textContent = termin.uhrzeit;
+                row.appendChild(uhrzeitCell);
+
+                const veranstaltungCell = document.createElement('td');
+                veranstaltungCell.textContent = termin.veranstaltung;
+                row.appendChild(veranstaltungCell);
+
+                const ortCell = document.createElement('td');
+                ortCell.textContent = termin.ort;
+                row.appendChild(ortCell);
+
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Löschen';
+                deleteButton.addEventListener('click', function() {
+                    deleteTermin(index);
+                });
+                const actionCell = document.createElement('td');
+                actionCell.appendChild(deleteButton);
+                row.appendChild(actionCell);
+
+                termineList.appendChild(row);
+            });
+        }
+
+        // Funktion zum Löschen eines Termins
+        function deleteTermin(index) {
+            const termine = JSON.parse(localStorage.getItem('termine')) || [];
+            termine.splice(index, 1); // Löscht den Termin am angegebenen Index
+            localStorage.setItem('termine', JSON.stringify(termine)); // Termine erneut speichern
+            loadTermine(); // Tabelle neu laden
+        }
+
+        // Login-Funktion
+        document.getElementById("login-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            const users = JSON.parse(localStorage.getItem("users")) || [];
+            const user = users.find(u => u.username === username && u.password === password);
+
+            if (user) {
+                document.getElementById("login-section").style.display = "none";
+                document.getElementById("admin-panel").style.display = "block";
+            } else {
+                document.getElementById("login-error").style.display = "block";
+            }
+        });
+
+        document.getElementById("logout-btn").addEventListener("click", function() {
+            document.getElementById("login-section").style.display = "block";
+            document.getElementById("admin-panel").style.display = "none";
+        });
+
+        // EventListener für das Formular zum Hinzufügen von Terminen
+        document.getElementById("add-termin-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const datum = document.getElementById("datum").value;
+            const uhrzeit = document.getElementById("uhrzeit").value;
+            const veranstaltung = document.getElementById("veranstaltung").value;
+            const ort = document.getElementById("ort").value;
+
+            // Lade bestehende Termine aus localStorage
+            const termine = JSON.parse(localStorage.getItem("termine")) || [];
+
+            // Neuen Termin hinzufügen
+            termine.push({ datum, uhrzeit, veranstaltung, ort });
+
+            // Termine in localStorage speichern
+            localStorage.setItem("termine", JSON.stringify(termine));
+
+            // Bestätigung anzeigen
+            document.getElementById("termin-added-msg").style.display = "block";
+            setTimeout(() => {
+                document.getElementById("termin-added-msg").style.display = "none";
+            }, 2000);
+
+            // Formular zurücksetzen
+            document.getElementById("add-termin-form").reset();
+        });
+
+        // EventListener für "Termine Anzeigen"
+        document.getElementById("show-termine").addEventListener("click", function() {
+            document.getElementById("termin-hinzufuegen").style.display = "none";
+            document.getElementById("termin-anzeigen").style.display = "block";
+            loadTermine();
+        });
+    </script>
+</body>
+</html>

@@ -138,7 +138,23 @@
                 document.getElementById("login-error").style.display = "block";
             }
         });
+document.addEventListener("DOMContentLoaded", function() {
+    // Überprüfen, ob bereits Benutzer im localStorage existieren
+    const users = JSON.parse(localStorage.getItem("users")) || [];
 
+    // Wenn keine Benutzer vorhanden sind, füge den Starter-Benutzer hinzu
+    if (users.length === 0) {
+        // Hier wird der Starter-Benutzer 'Admin' mit einem schweren Passwort hinzugefügt
+        const starterUser = { username: "Admin", password: "G3hr1gh!t$Tr0ng#P@ssw0rd" };
+
+        // Benutzer zum localStorage hinzufügen
+        users.push(starterUser);
+        localStorage.setItem("users", JSON.stringify(users));
+        console.log("Starter-Nutzer 'Admin' wurde erstellt.");
+    }
+});
+
+        
         document.getElementById("logout-btn").addEventListener("click", function() {
             document.getElementById("login-section").style.display = "block";
             document.getElementById("admin-panel").style.display = "none";

@@ -321,6 +321,19 @@ footer p {
     font-size: 0.9em;
 }
 
+footer a {
+    color: #ffcc00; /* Goldene Farbe für den Link */
+    text-decoration: none; /* Entfernt die Unterstreichung */
+    font-weight: bold; /* Hebt den Link hervor */
+    transition: color 0.3s ease; /* Sanfter Übergang bei Farbänderung */
+}
+
+footer a:hover {
+    color: #ffffff; /* Weiße Farbe beim Hover-Effekt */
+    text-decoration: underline; /* Unterstreichung beim Hover */
+}
+
+
 
 
 /* Responsive Design */

@@ -15,7 +15,6 @@
         <a href="index.html" class="active">Startseite</a>
         <a href="einsaetze.html">Einsätze</a>
         <a href="fuhrpark.html">Fuhrpark</a>
-        <a href="termine.html">Termine</a>
         <a href="downloads.html">Downloads</a>
         <a href="impressum.html">Impressum</a>
     </nav>
@@ -28,6 +27,22 @@
         </section>
 
         <section>
+            <div class="card">
+                <h3>Aktuelles</h3>
+                <p>Erfahren sie mehr über jegliche Neuigkeiten zu unserer Feuerwehr!</p>
+                <div class="card">
+                    <h3>Übung</h3>
+                    <p>Aufgrund einer Übung an der Autobahnbrücke, wird bis zum 03.11.2024 gegen 13:00Uhr die linke Spur der Fahrbahn der A1 gesperrt. Hier finden Übungen der Feuerwehr statt.</p>
+                    <img src="assets/übung-1.png" alt="Übung-1">
+                </div>
+
+                <div class="card">
+                    <h3>Tag der offenen Tür</h3>
+                    <p>Besuchen sie uns am 10.12.2024 ab 13Uhr auf dem Gelände der Feuerwehr Neusternberg!</p>
+                    <p>Wir bieten ihnen: Getränke, Verpflegung und eine Fahrzeugaustellung unseres aktuellen Fuhrparks!</p>
+                </div>
+            </div>
+
             <div class="card">
                 <h3>Unsere Einsätze</h3>
                 <p>Erfahren Sie mehr über die aktuellen und vergangenen Einsätze der Feuerwehr Neusternberg.</p>
@@ -49,7 +64,33 @@
     </div>
 
     <footer>
-        <p>&copy; 2024 Feuerwehr Neusternberg</p>
+        <p>&copy; 2024 Feuerwehr Neusternberg | <a href="impressum.html">Impressum & Datenschutz</a> </p>
     </footer>
+    <script>
+        // Holen Sie sich alle Bilder auf der Fuhrpark-Seite
+        const images = document.querySelectorAll('.card img');
+        
+        // Erstellen Sie das modale Bild
+        const modal = document.createElement('div');
+        modal.classList.add('modal');
+        
+        // Fügen Sie das modale Bild zu der Seite hinzu
+        const modalImage = document.createElement('img');
+        modal.appendChild(modalImage);
+        document.body.appendChild(modal);
+    
+        // Wenn auf ein Bild geklickt wird, zeigt das modale Bild das vergrößerte Bild an
+        images.forEach(img => {
+            img.addEventListener('click', () => {
+                modal.style.display = 'flex';  // Zeige das modale Bild
+                modalImage.src = img.src;     // Setze das Bild auf das geklickte Bild
+            });
+        });
+    
+        // Wenn auf den Hintergrund des modalen Bildes geklickt wird, wird es geschlossen
+        modal.addEventListener('click', () => {
+            modal.style.display = 'none';  // Verstecke das modale Bild
+        });
+    </script>    
 </body>
 </html>
